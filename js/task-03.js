@@ -1,3 +1,14 @@
+// Напиши скрипт для создания галлереи изображений по массиву данных.
+
+// В HTML есть список ul#gallery.
+
+// < ul id = "gallery" ></ul >
+//     Используй массив объектов images для создания тегов img вложенных в li.Для создания разметки используй шаблонные строки и insertAdjacentHTML().
+
+// Все элементы галереи должны добавляться в DOM за одну операцию вставки.
+// Добавь минимальное оформление галереи флексбоксами или гридами через css - классы.
+
+
 const images = [
     {
         url: 'https://images.pexels.com/photos/140134/pexels-photo-140134.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
@@ -14,19 +25,13 @@ const images = [
 ];
 
 
-const containerEl = document.querySelector('#gallery')
+const galleryImages = document.querySelector('#gallery');
 
+const addGalleryImagesEl = images.map(element => {
+    const addGalleryListElImg = `<li class="gallery__item"><img src="${element.url}" alt="${element.alt}" width=320 height=240></li>`;
+    return addGalleryListElImg;
+});
 
-console.log(containerEl)
+galleryImages.insertAdjacentHTML("beforeend", addGalleryImagesEl.join(' '));
 
-const imageList = images.map(elem => {
-    containerEl.insertAdjacentHTML('afterBegin', '<li><img></li>',
-    )
-    return containerEl
-})
-
-// galleryImagesEl.insertAdjacentHTML('afterbegin', `<li>
-// <img src = ${images[0].url}
-// alt = ${images[0].alt}
-// width = "640">
-// </li >`);
+galleryImages.setAttribute("style", "list-style:none; display: flex; justify-content: space-around;")
